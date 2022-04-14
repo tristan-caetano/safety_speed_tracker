@@ -13,6 +13,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     // Global variables
     TextView maxSpeedText;
     TextView currSpeedText;
+    Button recordButton;
     float currMaxSpeed = 0;
+    boolean doRecord = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         maxSpeedText = findViewById(R.id.maxSpeedText);
         currSpeedText = findViewById(R.id.currSpeedText);
+        recordButton = findViewById(R.id.recordSpeed);
 
         // Check that user granted permission for GPS use
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)

@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mainToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
     <TextView
         android:id="@+id/currSpeedText"
         android:layout_width="284dp"
@@ -31,4 +39,16 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/currSpeedText" />
+
+    <Button
+        android:id="@+id/recordSpeed"
+        android:layout_width="231dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="32dp"
+        android:text="RECORD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maxSpeedText"
+        app:layout_constraintVertical_bias="0.015" />
 </androidx.constraintlayout.widget.ConstraintLayout>

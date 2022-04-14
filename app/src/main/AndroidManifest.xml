@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Safety_speed_tracker">
         <activity
+            android:name=".ShowTopSpeeds"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

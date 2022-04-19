@@ -35,7 +35,7 @@ public class SQLInterfacer extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME +
                 " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_SPEED + " FLOAT, " +
+                COLUMN_SPEED + " TEXT, " +
                 COLUMN_DATE + " TEXT);";
         db.execSQL(query);
     }
@@ -47,7 +47,7 @@ public class SQLInterfacer extends SQLiteOpenHelper {
     }
 
     // Sending values to database to be saved
-    void addOrder(float speed, String date){
+    void addTopSpeed(String speed, String date){
 
         // Allows us to write to db
         SQLiteDatabase db = this.getWritableDatabase();
@@ -64,9 +64,9 @@ public class SQLInterfacer extends SQLiteOpenHelper {
 
         // Notifying the user if it was successful or not
         if(result == -1){
-            Toast.makeText(context, "Order submission failed.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Failed to record top speed.", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(context, "Order successfully completed!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Top speed successfully recorded!", Toast.LENGTH_SHORT).show();
         }
     }
 

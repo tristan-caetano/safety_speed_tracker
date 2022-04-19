@@ -68,7 +68,7 @@ public class ShowTopSpeeds extends AppCompatActivity {
                 return true;
 
             case R.id.settingsButton:
-                startActivity(new Intent(this, settingsActivity.class));
+                startActivity(new Intent(this, SettingsMenu.class));
                 return true;
         }
 

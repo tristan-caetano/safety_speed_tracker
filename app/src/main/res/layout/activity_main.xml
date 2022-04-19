@@ -16,11 +16,11 @@
 
     <TextView
         android:id="@+id/currSpeedText"
-        android:layout_width="284dp"
-        android:layout_height="112dp"
+        android:layout_width="349dp"
+        android:layout_height="122dp"
         android:layout_marginTop="196dp"
         android:gravity="center"
-        android:text="60 m/h"
+        android:text="000.0 m/h"
         android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -33,7 +33,7 @@
         android:layout_height="110dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="38 m/h"
+        android:text="000.0 k/h"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -51,4 +51,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/maxSpeedText"
         app:layout_constraintVertical_bias="0.015" />
+
+    <Button
+        android:id="@+id/playButton"
+        android:onClick="play"
+        android:layout_width="55dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        app:icon="@drawable/play"
+        app:layout_constraintBottom_toTopOf="@+id/currSpeedText"
+        app:layout_constraintEnd_toStartOf="@+id/pauseButton"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainToolbar" />
+
+    <Button
+        android:id="@+id/pauseButton"
+        android:onClick="pause"
+        android:layout_width="58dp"
+        android:layout_height="47dp"
+        app:icon="@drawable/pause"
+        app:layout_constraintBottom_toTopOf="@+id/currSpeedText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainToolbar" />
+
+    <Button
+        android:id="@+id/stopButton"
+        android:onClick="stop"
+        android:layout_width="55dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="16dp"
+        app:icon="@drawable/stop"
+        app:layout_constraintBottom_toTopOf="@+id/currSpeedText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintStart_toEndOf="@+id/pauseButton"
+        app:layout_constraintTop_toBottomOf="@+id/mainToolbar"
+        app:layout_constraintVertical_bias="0.063" />
 </androidx.constraintlayout.widget.ConstraintLayout>

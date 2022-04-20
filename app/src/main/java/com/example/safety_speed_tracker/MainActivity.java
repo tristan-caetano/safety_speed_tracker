@@ -100,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 // If its already recording
                 if(doRecord){
 
+                    recordButton.setText("RECORD");
+
                     managerCompat.cancelAll();
 
                     // Tell user their top speed was recorded
@@ -133,6 +135,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
                 // If its not already recording
                 }else{
+
+                    recordButton.setText("STOP");
 
                     managerCompat.notify(1, builder.build());
 

@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
+
 import androidx.appcompat.widget.Toolbar;
 
 public class SettingsMenu extends AppCompatActivity {
@@ -18,7 +20,8 @@ public class SettingsMenu extends AppCompatActivity {
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String IS_METRIC = "isMetric";
     private boolean isMetric;
-    CheckBox isMetricCheck;
+    RadioButton mphButton;
+    RadioButton kphButton;
     Toolbar settingsToolbar;
 
     @Override
@@ -27,7 +30,8 @@ public class SettingsMenu extends AppCompatActivity {
         setContentView(R.layout.activity_settings_menu);
 
         // Filling attributes
-        isMetricCheck = findViewById(R.id.metricCheckBox);
+        mphButton = findViewById(R.id.mphButton);
+        kphButton = findViewById(R.id.kphButton);
         settingsToolbar = findViewById(R.id.settingsToolbar);
 
         // Initializing toolbar
@@ -38,27 +42,35 @@ public class SettingsMenu extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPrefs.edit();
         isMetric = sharedPrefs.getBoolean(IS_METRIC, false);
 
-        // Metric check
         if(isMetric){
-            isMetricCheck.setText("km/h");
+            kphButton.setChecked(true);
         }else{
-            isMetricCheck.setText("m/h");
+            mphButton.setChecked(true);
         }
 
         // Is Metric Checkbox
-        isMetricCheck.setOnClickListener(new View.OnClickListener() {
+        mphButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 // Metric check
-                if(isMetricCheck.isChecked()){
-                    isMetric = true;
-                    editor.putBoolean(IS_METRIC, isMetric);
-                    isMetricCheck.setText("km/h");
-                }else{
+                if(mphButton.isChecked()){
                     isMetric = false;
                     editor.putBoolean(IS_METRIC, isMetric);
-                    isMetricCheck.setText("m/h");
+                }
+                editor.commit();
+            }
+        });
+
+        // Is Metric Checkbox
+        kphButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // Metric check
+                if(kphButton.isChecked()){
+                    isMetric = true;
+                    editor.putBoolean(IS_METRIC, isMetric);
                 }
                 editor.commit();
             }

@@ -4,27 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
+    android:backgroundTint="#000000"
     tools:context=".SettingsMenu">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/settingsToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/black"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp" />
 
-    <CheckBox
-        android:id="@+id/metricCheckBox"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingsToolbar"
-        app:layout_constraintVertical_bias="0.031" />
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/metricRadioText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose preferred system of measurement."
+            android:textColor="#FFFFFF"
+            android:textSize="21sp" />
+
+        <RadioButton
+            android:id="@+id/mphButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="#FFFFFF"
+            android:text="Miles Per Hour"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/kphButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="#FFFFFF"
+            android:text="Kilometers Per Hour"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

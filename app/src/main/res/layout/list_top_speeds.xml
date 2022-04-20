@@ -3,25 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#000000"
+    android:backgroundTint="#000000">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="409dp"
-        android:layout_height="118dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#004A4A4A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="-1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/id"
                 android:layout_width="52dp"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:textSize="40sp"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +37,8 @@
                 android:layout_marginStart="12dp"
                 android:gravity="center"
                 android:text="60 m/h"
-                android:textSize="48sp"
+                android:textColor="#FFFFFF"
+                android:textSize="40sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/id"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -45,6 +50,7 @@
                 android:layout_marginStart="52dp"
                 android:gravity="center"
                 android:text="04/09/2022"
+                android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -54,12 +60,16 @@
 
             <Button
                 android:id="@+id/deleteButton"
-                android:layout_width="140dp"
+                android:layout_width="57dp"
                 android:layout_height="57dp"
-                android:text="Delete"
+                android:background="#00FFFFFF"
+                android:backgroundTint="#00FFFFFF"
+                android:foregroundTint="#00FDFDFD"
+                app:icon="@drawable/delete"
+                app:iconTint="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.726"
                 app:layout_constraintStart_toEndOf="@+id/topSpeedTxt"
                 app:layout_constraintTop_toBottomOf="@+id/dateTxt"
                 app:layout_constraintVertical_bias="1.0" />

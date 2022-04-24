@@ -12,16 +12,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.SurfaceTexture;
+import android.hardware.Camera;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
@@ -29,6 +35,8 @@ import androidx.core.app.NotificationChannelCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -51,19 +59,26 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     float currMaxSpeed = 0;
     boolean doRecord = false;
     MediaPlayer player;
+    ImageView testImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Declaring variables
         maxSpeedText = findViewById(R.id.maxSpeedText);
         currSpeedText = findViewById(R.id.currSpeedText);
         recordButton = findViewById(R.id.recordSpeed);
         playButton = findViewById(R.id.playButton);
         pauseButton = findViewById(R.id.pauseButton);
         stopButton = findViewById(R.id.stopButton);
+        testImage = findViewById(R.id.imageView);
         Toolbar mainToolbar = findViewById(R.id.mainToolbar);
+
+        // Creating shared prefs
+        SharedPreferences sharedPrefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
 
         // Initializing toolbar
         setSupportActionBar(mainToolbar);
@@ -121,8 +136,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
                     // Changing sent string based on metric boolean
                     if (MainActivity.this.useMetricUnits()) {
-                        currSpeedText.setText("000.0" + "km/h");
-                        maxSpeedText.setText("000.0" + "km/h");
+                        currSpeedText.setText("000.0" + "k/h");
+                        maxSpeedText.setText("000.0" + "k/h");
                         tempMax += " km/h";
                     } else {
                         currSpeedText.setText("000.0" + "m/h");
@@ -236,8 +251,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             strCurrMaxSpeed = strCurrMaxSpeed.replace(" ", "0");
 
             if (this.useMetricUnits()) {
-                currSpeedText.setText(strCurrentSpeed + "km/h");
-                maxSpeedText.setText(strCurrMaxSpeed + "km/h");
+                currSpeedText.setText(strCurrentSpeed + "k/h");
+                maxSpeedText.setText(strCurrMaxSpeed + "k/h");
             } else {
                 currSpeedText.setText(strCurrentSpeed + "m/h");
                 maxSpeedText.setText(strCurrMaxSpeed + "m/h");
@@ -245,6 +260,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
+    // Getting correct units
     private boolean useMetricUnits(){
         // Creating shared prefs
         SharedPreferences sharedPrefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
@@ -265,6 +281,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
+    // Playing media player
     public void play(View v) {
         if (player == null) {
             player = MediaPlayer.create(this, R.raw.song);
@@ -279,12 +296,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         player.start();
     }
 
+    // Pausing media player
     public void pause(View v) {
         if (player != null) {
             player.pause();
         }
     }
 
+    // Stopping media player
     public void stop(View v) {
         stopPlayer();
     }
@@ -302,7 +321,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         super.onStop();
         stopPlayer();
     }
-
-
-
 }
+
+
+

@@ -3,6 +3,7 @@ package com.example.safety_speed_tracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,6 +47,9 @@ public class ShowTopSpeeds extends AppCompatActivity {
         sLAdapter = new SpeedListAdapter(ShowTopSpeeds.this, ShowTopSpeeds.this, id, topSpeed, date);
         recyclerView.setAdapter(sLAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((ShowTopSpeeds.this)));
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new Swiper(sLAdapter));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     // Inflating toolbar to get toolbar buttons
@@ -91,7 +95,6 @@ public class ShowTopSpeeds extends AppCompatActivity {
                 id.add(cursor.getString(0));
                 topSpeed.add(cursor.getString(1));
                 date.add(cursor.getString(2));
-
             }
         }
     }

@@ -1,18 +1,25 @@
 package com.example.safety_speed_tracker;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 
 public class SettingsMenu extends AppCompatActivity {
 
@@ -75,6 +82,7 @@ public class SettingsMenu extends AppCompatActivity {
                 editor.commit();
             }
         });
+
     }
 
     // Inflating toolbar to get toolbar buttons

@@ -19,6 +19,7 @@
         tools:layout_editor_absoluteY="1dp" />
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,6 +54,7 @@
             android:text="Kilometers Per Hour"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
+
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

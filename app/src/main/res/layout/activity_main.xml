@@ -107,4 +107,13 @@
         app:layout_constraintStart_toEndOf="@+id/pauseButton"
         app:layout_constraintTop_toBottomOf="@+id/mainToolbar"
         app:layout_constraintVertical_bias="0.063" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="411dp"
+        android:layout_height="148dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recordSpeed"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 </androidx.constraintlayout.widget.ConstraintLayout>

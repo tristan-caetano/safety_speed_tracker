@@ -23,7 +23,6 @@ public class SQLInterfacer extends SQLiteOpenHelper {
     private static final String COLUMN_SPEED = "top_speed";
     private static final String COLUMN_DATE = "date";
 
-
     // Constructor
     public SQLInterfacer(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

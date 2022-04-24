@@ -5,10 +5,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.safety_speed_tracker.SQLInterfacer;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.sql.Blob;
 import java.util.ArrayList;
 
 public class SpeedListAdapter extends RecyclerView.Adapter<SpeedListAdapter.MyViewHolder> {
@@ -55,35 +62,34 @@ public class SpeedListAdapter extends RecyclerView.Adapter<SpeedListAdapter.MyVi
         holder.topSpeedTxt.setText(String.valueOf(topSpeed.get(position)));
         holder.dateTxt.setText(String.valueOf(date.get(position)));
 
-        // Button for deleting row in db
-        holder.delButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    }
 
-                // Alert dialogue to make sure the user wants to delete the SQL entry
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("Are you sure you want to delete this entry?")
+    // Deleting item in list
+    public void deleteItem(int position){
 
-                                    // If the user selects yes
-                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            // Deleting the SQL entry
-                                            String delID = (holder.idText).getText().toString().trim();
-                                            SQLInterfacer dbi = new SQLInterfacer(context);
-                                            dbi.deleteRow(delID);
-                                            Intent menuIntent = new Intent(context, ShowTopSpeeds.class);
-                                            activity.startActivity(menuIntent);
-                                        }
+        // Alert dialogue to make sure the user wants to delete the SQL entry
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        // Cancelling deletion
+        builder.setMessage("Are you sure you want to delete this entry?")
 
-                                    // Cancelling deletion
-                                    }).setNegativeButton("No", null);
+                // If the user selects yes
+                .setPositiveButton("Yes", (dialogInterface, i) -> {
+                    // Deleting the SQL entry
+                    String delID = (String.valueOf(id.get(position))).trim();
+                    SQLInterfacer dbi = new SQLInterfacer(context);
+                    dbi.deleteRow(delID);
+                    Intent menuIntent = new Intent(context, ShowTopSpeeds.class);
+                    activity.startActivity(menuIntent);
+                })
+                .setNegativeButton("No", (dialogInterface, i) -> {
+                    Intent menuIntent = new Intent(context, ShowTopSpeeds.class);
+                    activity.startActivity(menuIntent);
+                });
 
-                // Showing alert
-                AlertDialog alert = builder.create();
-                alert.show();
-            }
-        });
+        // Showing alert
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 
     // Returning how many rows in db
@@ -97,7 +103,6 @@ public class SpeedListAdapter extends RecyclerView.Adapter<SpeedListAdapter.MyVi
 
         // Declaring buttons
         TextView idText, topSpeedTxt, dateTxt;
-        Button delButton;
 
         // Setting up buttons
         public MyViewHolder(@NonNull View itemView) {
@@ -105,7 +110,6 @@ public class SpeedListAdapter extends RecyclerView.Adapter<SpeedListAdapter.MyVi
             idText = itemView.findViewById(R.id.id);
             topSpeedTxt = itemView.findViewById(R.id.topSpeedTxt);
             dateTxt = itemView.findViewById(R.id.dateTxt);
-            delButton = itemView.findViewById(R.id.deleteButton);
         }
     }
 }

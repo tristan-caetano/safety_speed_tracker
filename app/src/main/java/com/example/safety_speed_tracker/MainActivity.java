@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     if (MainActivity.this.useMetricUnits()) {
                         currSpeedText.setText("000.0" + "k/h");
                         maxSpeedText.setText("000.0" + "k/h");
-                        tempMax += " km/h";
+                        tempMax += " k/h";
                     } else {
                         currSpeedText.setText("000.0" + "m/h");
                         maxSpeedText.setText("000.0" + "m/h");
